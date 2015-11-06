@@ -186,7 +186,7 @@ public class VerRegistrosProfesores extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Registro de profesores"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de profesores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 255, 255)));
 
         tablaDatos = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -227,7 +227,7 @@ public class VerRegistrosProfesores extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos a modificar"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos a modificar", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 255, 255)));
 
         jLabel2.setText("Nombre(s):");
 
@@ -289,7 +289,7 @@ public class VerRegistrosProfesores extends javax.swing.JFrame {
 
         lblId.setText("ID:");
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Realizar búsqueda"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Realizar búsqueda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, null, new java.awt.Color(255, 255, 255)));
 
         txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
