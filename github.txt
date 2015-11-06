@@ -5,3 +5,10 @@ git add README.md
 git commit -m "first commit"
 git remote add origin https://github.com/casablancas/iPrestamos.git
 git push -u origin master
+
+
+
+
+git add .
+git commit -m "comentario"
+git push origin master
