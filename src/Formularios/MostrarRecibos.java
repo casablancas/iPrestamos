@@ -30,7 +30,10 @@ public class MostrarRecibos extends javax.swing.JFrame {
         this.setTitle("Registro de todos los recibos realizados");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        cargar("");
+//        cargar("");
+        buscarNombre("");
+        txtBuscarMaterial.setEnabled(false);
+        txtBuscarFecha.setEnabled(false);
 //        mostrarPrestamo("");
         tablaPrestamos.setEditingRow(ERROR);
     }
@@ -127,6 +130,119 @@ public class MostrarRecibos extends javax.swing.JFrame {
         }
   }
     
+    public void buscarNombre(String valor)
+    {
+        //Encabezados de la tabla
+        String [] titulos = {"", "Profesor", "Apellidos", "Material", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
+        String [] registros = new String[8];
+
+        String sql = "SELECT IdRecibo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Material.Nombre AS material, Usuario.Nombre AS prestador, Usuario.Apellidos AS apellidosprestador, Fecha_Recibo, Hora_Recibo FROM Recibo INNER JOIN Profesor ON Recibo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Recibo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Recibo.Usuario_IdUsuario = Usuario.IdPrestador WHERE Profesor.Nombre LIKE '%"+valor+"%' ";
+        //String sql2 = "SELECT * FROM somhue WHERE hueapellidos LIKE '%"+valor+"%' ";
+        //String sql = "SELECT * FROM somhue";
+        
+        //Creamos nuestro objeto para la tabla que muestra los datos de la BD
+        model = new DefaultTableModel(null, titulos);
+        
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("IdRecibo");
+                registros[1] = rs.getString("profe");
+                registros[2] = rs.getString("apellidosprofe");
+//                registros[3] = rs.getString("colegio");
+                registros[3] = rs.getString("material");
+                registros[4] = rs.getString("prestador");
+                registros[5] = rs.getString("apellidosprestador");
+                registros[6] = rs.getString("Fecha_Recibo");
+                registros[7] = rs.getString("Hora_Recibo");
+                model.addRow(registros);
+            }
+            tablaPrestamos.setModel(model);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    public void buscarFecha(String valor)
+    {
+        //Encabezados de la tabla
+        String [] titulos = {"", "Profesor", "Apellidos", "Material", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
+        String [] registros = new String[8];
+
+        String sql = "SELECT IdRecibo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Material.Nombre AS material, Usuario.Nombre AS prestador, Usuario.Apellidos AS apellidosprestador, Fecha_Recibo, Hora_Recibo FROM Recibo INNER JOIN Profesor ON Recibo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Recibo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Recibo.Usuario_IdUsuario = Usuario.IdPrestador WHERE Fecha_Recibo LIKE '%"+valor+"%' ";
+        //String sql2 = "SELECT * FROM somhue WHERE hueapellidos LIKE '%"+valor+"%' ";
+        //String sql = "SELECT * FROM somhue";
+        
+        //Creamos nuestro objeto para la tabla que muestra los datos de la BD
+        model = new DefaultTableModel(null, titulos);
+        
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("IdRecibo");
+                registros[1] = rs.getString("profe");
+                registros[2] = rs.getString("apellidosprofe");
+//                registros[3] = rs.getString("colegio");
+                registros[3] = rs.getString("material");
+                registros[4] = rs.getString("prestador");
+                registros[5] = rs.getString("apellidosprestador");
+                registros[6] = rs.getString("Fecha_Recibo");
+                registros[7] = rs.getString("Hora_Recibo");
+                model.addRow(registros);
+            }
+            tablaPrestamos.setModel(model);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    public void buscarMaterial(String valor)
+    {
+        //Encabezados de la tabla
+        String [] titulos = {"", "Profesor", "Apellidos", "Material", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
+        String [] registros = new String[8];
+
+        String sql = "SELECT IdRecibo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Material.Nombre AS material, Usuario.Nombre AS prestador, Usuario.Apellidos AS apellidosprestador, Fecha_Recibo, Hora_Recibo FROM Recibo INNER JOIN Profesor ON Recibo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Recibo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Recibo.Usuario_IdUsuario = Usuario.IdPrestador WHERE Material.Nombre LIKE '%"+valor+"%' ";
+        //String sql2 = "SELECT * FROM somhue WHERE hueapellidos LIKE '%"+valor+"%' ";
+        //String sql = "SELECT * FROM somhue";
+        
+        //Creamos nuestro objeto para la tabla que muestra los datos de la BD
+        model = new DefaultTableModel(null, titulos);
+        
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("IdRecibo");
+                registros[1] = rs.getString("profe");
+                registros[2] = rs.getString("apellidosprofe");
+//                registros[3] = rs.getString("colegio");
+                registros[3] = rs.getString("material");
+                registros[4] = rs.getString("prestador");
+                registros[5] = rs.getString("apellidosprestador");
+                registros[6] = rs.getString("Fecha_Recibo");
+                registros[7] = rs.getString("Hora_Recibo");
+                model.addRow(registros);
+            }
+            tablaPrestamos.setModel(model);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -140,7 +256,12 @@ public class MostrarRecibos extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaPrestamos = new javax.swing.JTable();
-        txtBuscar = new javax.swing.JTextField();
+        btnNombre = new javax.swing.JButton();
+        txtBuscarNombre = new javax.swing.JTextField();
+        btnMaterial = new javax.swing.JButton();
+        txtBuscarMaterial = new javax.swing.JTextField();
+        btnFecha = new javax.swing.JButton();
+        txtBuscarFecha = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -177,9 +298,42 @@ public class MostrarRecibos extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
         );
 
-        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
+        btnNombre.setText("Buscar por nombre");
+        btnNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNombreActionPerformed(evt);
+            }
+        });
+
+        txtBuscarNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtBuscarKeyReleased(evt);
+                txtBuscarNombreKeyReleased(evt);
+            }
+        });
+
+        btnMaterial.setText("Buscar por material");
+        btnMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaterialActionPerformed(evt);
+            }
+        });
+
+        txtBuscarMaterial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarMaterialKeyReleased(evt);
+            }
+        });
+
+        btnFecha.setText("Buscar por fecha");
+        btnFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFechaActionPerformed(evt);
+            }
+        });
+
+        txtBuscarFecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarFechaKeyReleased(evt);
             }
         });
 
@@ -188,33 +342,44 @@ public class MostrarRecibos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtBuscarNombre))
+                .addGap(250, 250, 250)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtBuscarMaterial)
+                    .addComponent(btnMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtBuscarFecha)
+                    .addComponent(btnFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                .addGap(217, 217, 217))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNombre)
+                    .addComponent(btnFecha)
+                    .addComponent(btnMaterial))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-        // TODO add your handling code here:
-//        mostrarPrestamo(txtBuscar.getText());
-        cargar(txtBuscar.getText());
-    }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
@@ -225,6 +390,53 @@ public class MostrarRecibos extends javax.swing.JFrame {
             Logger.getLogger(VerRegistrosProfesores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formWindowClosing
+
+    private void btnNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNombreActionPerformed
+        // TODO add your handling code here:
+        //        btnFecha.setEnabled(false);
+        //        btnNombre.setEnabled(true);
+        txtBuscarNombre.setEnabled(true);
+        txtBuscarFecha.setEnabled(false);
+        txtBuscarMaterial.setEnabled(false);
+        txtBuscarNombre.grabFocus();
+        buscarNombre(txtBuscarNombre.getText());
+    }//GEN-LAST:event_btnNombreActionPerformed
+
+    private void txtBuscarNombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarNombreKeyReleased
+        // TODO add your handling code here:
+        //        mostrarPrestamo(txtBuscar.getText());
+        buscarNombre(txtBuscarNombre.getText());
+    }//GEN-LAST:event_txtBuscarNombreKeyReleased
+
+    private void btnMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaterialActionPerformed
+        // TODO add your handling code here:
+        txtBuscarMaterial.setEnabled(true);
+        txtBuscarFecha.setEnabled(false);
+        txtBuscarNombre.setEnabled(false);
+        txtBuscarMaterial.grabFocus();
+        buscarMaterial(txtBuscarMaterial.getText());
+    }//GEN-LAST:event_btnMaterialActionPerformed
+
+    private void txtBuscarMaterialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarMaterialKeyReleased
+        // TODO add your handling code here:
+        buscarMaterial(txtBuscarMaterial.getText());
+    }//GEN-LAST:event_txtBuscarMaterialKeyReleased
+
+    private void btnFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFechaActionPerformed
+        // TODO add your handling code here:
+        //        btnNombre.setEnabled(false);
+        //        btnFecha.setEnabled(true);
+        txtBuscarFecha.setEnabled(true);
+        txtBuscarNombre.setEnabled(false);
+        txtBuscarMaterial.setEnabled(false);
+        txtBuscarFecha.grabFocus();
+        buscarFecha(txtBuscarFecha.getText());
+    }//GEN-LAST:event_btnFechaActionPerformed
+
+    private void txtBuscarFechaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarFechaKeyReleased
+        // TODO add your handling code here:
+        buscarFecha(txtBuscarFecha.getText());
+    }//GEN-LAST:event_txtBuscarFechaKeyReleased
 
     /**
      * @param args the command line arguments
@@ -262,9 +474,14 @@ public class MostrarRecibos extends javax.swing.JFrame {
 //    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFecha;
+    private javax.swing.JButton btnMaterial;
+    private javax.swing.JButton btnNombre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPrestamos;
-    private javax.swing.JTextField txtBuscar;
+    private javax.swing.JTextField txtBuscarFecha;
+    private javax.swing.JTextField txtBuscarMaterial;
+    private javax.swing.JTextField txtBuscarNombre;
     // End of variables declaration//GEN-END:variables
 }

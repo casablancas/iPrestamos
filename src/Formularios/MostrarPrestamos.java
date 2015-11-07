@@ -33,6 +33,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
         this.setResizable(false);
         buscarNombre("");
         txtBuscarFecha.setEnabled(false);
+        txtBuscarMaterial.setEnabled(false);
 //        mostrarPrestamo("");
         tablaPrestamos.setEditingRow(ERROR);
     }
@@ -43,17 +44,14 @@ public class MostrarPrestamos extends javax.swing.JFrame {
     
     DefaultTableModel model;
     
-    void buscarNombre(String valor)
+    public void buscarNombre(String valor)
     {
-//        txtNombre.setEnabled(false);
-//        txtApellidos.setEnabled(false);
-//        btnModificar.setEnabled(false);
         
         //Encabezados de la tabla
-        String [] titulos = {"", "Profesor", "Apellidos", "Material", "Colegio", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
+        String [] titulos = {"", "Profesor", "Apellidos", "Colegio", "Material", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
         String [] registros = new String[9];
         
-        String sql = "SELECT IdPrestamo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Material.Nombre AS material, Colegio, Usuario.Nombre AS prestador, Usuario.Apellidos AS apellidosprestador, Fecha_Entrega, Hora_Entrega FROM Prestamo INNER JOIN Profesor ON Prestamo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Prestamo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Prestamo.Usuario_IdPrestador = Usuario.IdPrestador WHERE Profesor.Nombre LIKE '%"+valor+"%' ";
+        String sql = "SELECT IdPrestamo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Colegio, Usuario.Nombre AS prestador, Material.Nombre AS material, Usuario.Apellidos AS apellidosprestador, Fecha_Entrega, Hora_Entrega FROM Prestamo INNER JOIN Profesor ON Prestamo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Prestamo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Prestamo.Usuario_IdPrestador = Usuario.IdPrestador WHERE Profesor.Nombre LIKE '%"+valor+"%' ";
 //        String sql2 = "SELECT * FROM somhue WHERE hueapellidos LIKE '%"+valor+"%' ";
         //String sql = "SELECT * FROM somhue";
         
@@ -70,8 +68,8 @@ public class MostrarPrestamos extends javax.swing.JFrame {
                 registros[0] = rs.getString("IdPrestamo");
                 registros[1] = rs.getString("profe");
                 registros[2] = rs.getString("apellidosprofe");
-                registros[3] = rs.getString("material");
-                registros[4] = rs.getString("colegio");
+                registros[3] = rs.getString("colegio");
+                registros[4] = rs.getString("material");
                 registros[5] = rs.getString("prestador");
                 registros[6] = rs.getString("apellidosprestador");
                 registros[7] = rs.getString("Fecha_Entrega");
@@ -85,17 +83,13 @@ public class MostrarPrestamos extends javax.swing.JFrame {
         }
     }
     
-    void buscarFecha(String valor)
+    public void buscarFecha(String valor)
     {
-//        txtNombre.setEnabled(false);
-//        txtApellidos.setEnabled(false);
-//        btnModificar.setEnabled(false);
-        
         //Encabezados de la tabla
-        String [] titulos = {"", "Profesor", "Apellidos", "Material", "Colegio", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
+        String [] titulos = {"", "Profesor", "Apellidos", "Colegio", "Material", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
         String [] registros = new String[9];
         
-        String sql = "SELECT IdPrestamo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Material.Nombre AS material, Colegio, Usuario.Nombre AS prestador, Usuario.Apellidos AS apellidosprestador, Fecha_Entrega, Hora_Entrega FROM Prestamo INNER JOIN Profesor ON Prestamo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Prestamo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Prestamo.Usuario_IdPrestador = Usuario.IdPrestador WHERE Fecha_Entrega LIKE '%"+valor+"%' ";
+        String sql = "SELECT IdPrestamo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Colegio, Usuario.Nombre AS prestador, Material.Nombre AS material, Usuario.Apellidos AS apellidosprestador, Fecha_Entrega, Hora_Entrega FROM Prestamo INNER JOIN Profesor ON Prestamo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Prestamo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Prestamo.Usuario_IdPrestador = Usuario.IdPrestador WHERE Fecha_Entrega LIKE '%"+valor+"%' ";
 //        String sql2 = "SELECT * FROM somhue WHERE hueapellidos LIKE '%"+valor+"%' ";
         //String sql = "SELECT * FROM somhue";
         
@@ -112,8 +106,47 @@ public class MostrarPrestamos extends javax.swing.JFrame {
                 registros[0] = rs.getString("IdPrestamo");
                 registros[1] = rs.getString("profe");
                 registros[2] = rs.getString("apellidosprofe");
-                registros[3] = rs.getString("material");
-                registros[4] = rs.getString("colegio");
+                registros[3] = rs.getString("colegio");
+                registros[4] = rs.getString("material");
+                registros[5] = rs.getString("prestador");
+                registros[6] = rs.getString("apellidosprestador");
+                registros[7] = rs.getString("Fecha_Entrega");
+                registros[8] = rs.getString("Hora_Entrega");
+                model.addRow(registros);
+            }
+            tablaPrestamos.setModel(model);
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+    public void buscarMaterial(String valor)
+    {
+        
+        //Encabezados de la tabla
+        String [] titulos = {"", "Profesor", "Apellidos", "Colegio", "Material", "Usuario", "Apellidos", "FechaPrestamo", "HoraPrestamo"};
+        String [] registros = new String[9];
+        
+        String sql = "SELECT IdPrestamo, Profesor.Nombre AS profe, Profesor.Apellidos AS apellidosprofe, Colegio, Usuario.Nombre AS prestador, Material.Nombre AS material, Usuario.Apellidos AS apellidosprestador, Fecha_Entrega, Hora_Entrega FROM Prestamo INNER JOIN Profesor ON Prestamo.Profesor_IdProfesor = Profesor.IdProfesor INNER JOIN Material ON Prestamo.Material_IdMaterial = Material.IdMaterial INNER JOIN Usuario ON Prestamo.Usuario_IdPrestador = Usuario.IdPrestador WHERE Material.Nombre LIKE '%"+valor+"%' ";
+//        String sql2 = "SELECT * FROM somhue WHERE hueapellidos LIKE '%"+valor+"%' ";
+        //String sql = "SELECT * FROM somhue";
+        
+        //Creamos nuestro objeto para la tabla que muestra los datos de la BD
+        model = new DefaultTableModel(null, titulos);
+        
+        Statement st;
+        try {
+            st = cn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            
+            while(rs.next())
+            {
+                registros[0] = rs.getString("IdPrestamo");
+                registros[1] = rs.getString("profe");
+                registros[2] = rs.getString("apellidosprofe");
+                registros[3] = rs.getString("colegio");
+                registros[4] = rs.getString("material");
                 registros[5] = rs.getString("prestador");
                 registros[6] = rs.getString("apellidosprestador");
                 registros[7] = rs.getString("Fecha_Entrega");
@@ -262,6 +295,8 @@ public class MostrarPrestamos extends javax.swing.JFrame {
         btnNombre = new javax.swing.JButton();
         btnFecha = new javax.swing.JButton();
         txtBuscarFecha = new javax.swing.JTextField();
+        btnMaterial = new javax.swing.JButton();
+        txtBuscarMaterial = new javax.swing.JTextField();
 
         Eliminar.setText("Eliminar");
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -333,6 +368,19 @@ public class MostrarPrestamos extends javax.swing.JFrame {
             }
         });
 
+        btnMaterial.setText("Buscar por material");
+        btnMaterial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMaterialActionPerformed(evt);
+            }
+        });
+
+        txtBuscarMaterial.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBuscarMaterialKeyReleased(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -346,6 +394,10 @@ public class MostrarPrestamos extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBuscarNombre))
+                .addGap(285, 285, 285)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtBuscarMaterial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -360,11 +412,13 @@ public class MostrarPrestamos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNombre)
-                    .addComponent(btnFecha))
+                    .addComponent(btnFecha)
+                    .addComponent(btnMaterial))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscarFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBuscarMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
 
@@ -398,6 +452,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
         //        btnNombre.setEnabled(true);
         txtBuscarNombre.setEnabled(true);
         txtBuscarFecha.setEnabled(false);
+        txtBuscarMaterial.setEnabled(false);
         txtBuscarNombre.grabFocus();
         buscarNombre(txtBuscarNombre.getText());
     }//GEN-LAST:event_btnNombreActionPerformed
@@ -413,9 +468,24 @@ public class MostrarPrestamos extends javax.swing.JFrame {
         //        btnFecha.setEnabled(true);
         txtBuscarFecha.setEnabled(true);
         txtBuscarNombre.setEnabled(false);
+        txtBuscarMaterial.setEnabled(false);
         txtBuscarFecha.grabFocus();
         buscarFecha(txtBuscarFecha.getText());
     }//GEN-LAST:event_btnFechaActionPerformed
+
+    private void txtBuscarMaterialKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarMaterialKeyReleased
+        // TODO add your handling code here:
+        buscarMaterial(txtBuscarMaterial.getText());
+    }//GEN-LAST:event_txtBuscarMaterialKeyReleased
+
+    private void btnMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaterialActionPerformed
+        // TODO add your handling code here:
+        txtBuscarMaterial.setEnabled(true);
+        txtBuscarFecha.setEnabled(false);
+        txtBuscarNombre.setEnabled(false);
+        txtBuscarMaterial.grabFocus();
+        buscarMaterial(txtBuscarMaterial.getText());
+    }//GEN-LAST:event_btnMaterialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -456,11 +526,13 @@ public class MostrarPrestamos extends javax.swing.JFrame {
     private javax.swing.JMenuItem Eliminar;
     private javax.swing.JPopupMenu OpcionEliminar;
     private javax.swing.JButton btnFecha;
+    private javax.swing.JButton btnMaterial;
     private javax.swing.JButton btnNombre;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaPrestamos;
     private javax.swing.JTextField txtBuscarFecha;
+    private javax.swing.JTextField txtBuscarMaterial;
     private javax.swing.JTextField txtBuscarNombre;
     // End of variables declaration//GEN-END:variables
 }

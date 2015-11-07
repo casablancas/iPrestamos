@@ -55,6 +55,11 @@
                   <Component id="btnNombre" max="32767" attributes="0"/>
                   <Component id="txtBuscarNombre" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="285" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnMaterial" max="32767" attributes="0"/>
+                  <Component id="txtBuscarMaterial" max="32767" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnFecha" max="32767" attributes="0"/>
@@ -73,11 +78,13 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnFecha" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtBuscarFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtBuscarNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtBuscarMaterial" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="40" max="32767" attributes="0"/>
           </Group>
@@ -163,6 +170,19 @@
     <Component class="javax.swing.JTextField" name="txtBuscarFecha">
       <Events>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarFechaKeyReleased"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnMaterial">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Buscar por material"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMaterialActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtBuscarMaterial">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtBuscarMaterialKeyReleased"/>
       </Events>
     </Component>
   </SubComponents>
