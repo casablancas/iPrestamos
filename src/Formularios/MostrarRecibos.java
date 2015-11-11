@@ -243,6 +243,13 @@ public class MostrarRecibos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }
+    
+    public void limpiarJTextField()
+     {
+         txtBuscarFecha.setText("");
+         txtBuscarMaterial.setText("");
+         txtBuscarNombre.setText("");
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -395,6 +402,7 @@ public class MostrarRecibos extends javax.swing.JFrame {
         // TODO add your handling code here:
         //        btnFecha.setEnabled(false);
         //        btnNombre.setEnabled(true);
+        limpiarJTextField();
         txtBuscarNombre.setEnabled(true);
         txtBuscarFecha.setEnabled(false);
         txtBuscarMaterial.setEnabled(false);
@@ -410,6 +418,7 @@ public class MostrarRecibos extends javax.swing.JFrame {
 
     private void btnMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaterialActionPerformed
         // TODO add your handling code here:
+        limpiarJTextField();
         txtBuscarMaterial.setEnabled(true);
         txtBuscarFecha.setEnabled(false);
         txtBuscarNombre.setEnabled(false);
@@ -426,6 +435,7 @@ public class MostrarRecibos extends javax.swing.JFrame {
         // TODO add your handling code here:
         //        btnNombre.setEnabled(false);
         //        btnFecha.setEnabled(true);
+        limpiarJTextField();
         txtBuscarFecha.setEnabled(true);
         txtBuscarNombre.setEnabled(false);
         txtBuscarMaterial.setEnabled(false);

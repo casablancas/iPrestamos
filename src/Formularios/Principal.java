@@ -76,6 +76,7 @@ public class Principal extends javax.swing.JFrame {
         txtAreaInfoTrabajador.setEditable(false);
         txtMaterial.setEnabled(false);
         btnPrestamo.setEnabled(false);
+        btnSalon.setEnabled(false);
         btnRecibo.setEnabled(false);
         optIDU.setSelected(true);
 //        btnIdentificar.setVisible(false);
@@ -136,7 +137,7 @@ public class Principal extends javax.swing.JFrame {
         btnIdentificarProfesor = new javax.swing.JButton();
         btnIdentificarUsuario = new javax.swing.JButton();
         btnImprimirPrestamoActual = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnSalon = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuRegistrar = new javax.swing.JMenu();
         RegistrarProfesor = new javax.swing.JMenu();
@@ -427,8 +428,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logotipo/students2.png"))); // NOI18N
-        jButton1.setText("Salón");
+        btnSalon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logotipo/students2.png"))); // NOI18N
+        btnSalon.setText("Salón");
+        btnSalon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalonActionPerformed(evt);
+            }
+        });
 
         jMenuBar1.setBackground(new java.awt.Color(2, 119, 189));
         jMenuBar1.setBorder(null);
@@ -603,7 +609,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRecibo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnSalon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -647,7 +653,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnReset)
                                     .addComponent(btnImprimirPrestamoActual)
-                                    .addComponent(jButton1))
+                                    .addComponent(btnSalon))
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -774,6 +780,7 @@ public class Principal extends javax.swing.JFrame {
         stop();
         stop2();
         try {
+            salon = JOptionPane.showInputDialog("Especifique Edificio y Salón con horario de la clase:", "ING-");
             realizarPrestamo();
 //            realizarPrestamoActual();
             limpiarJTextField();
@@ -899,6 +906,11 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         colegio = JOptionPane.showInputDialog("Especifique el colegio:");
     }//GEN-LAST:event_optOtroActionPerformed
+
+    private void btnSalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalonActionPerformed
+        // TODO add your handling code here:
+//        salon = JOptionPane.showInputDialog("Especifique Edificio y Salón con horario de la clase:", "ING-");
+    }//GEN-LAST:event_btnSalonActionPerformed
 
     protected void Iniciar(){
    Lector.addDataListener(new DPFPDataAdapter() {
@@ -1265,6 +1277,7 @@ public  void stop2(){
                      txtMaterial.setEnabled(true);
                      btnPrestamo.setEnabled(true);
                      btnRecibo.setEnabled(true);
+                     btnSalon.setEnabled(true);
                      txtMaterial.requestFocus();
                      stop2();
         }else
@@ -1478,7 +1491,7 @@ public  void stop2(){
   int idPrestamo;
 //  int idMaterial=0;
   int band=0;
-  String colegio;
+  String colegio, salon;
   String idMaterial;
   
   java.util.Date date = new java.util.Date();
@@ -1562,7 +1575,7 @@ public  void stop2(){
         {
             con.conectar();
          
-         try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO Prestamo(Profesor_IdProfesor, Material_IdMaterial, Usuario_IdPrestador, Fecha_Entrega, Hora_Entrega, Colegio) values(?,?,?,?,?,?)",
+         try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO Prestamo(Profesor_IdProfesor, Material_IdMaterial, Usuario_IdPrestador, Fecha_Entrega, Hora_Entrega, Colegio, Salon) values(?,?,?,?,?,?,?)",
              //Con la sig. linea, la clave primaria de la tabla se autogenera al hacer el INSERT
              PreparedStatement.RETURN_GENERATED_KEYS)) 
             {
@@ -1572,7 +1585,7 @@ public  void stop2(){
                 guardarStmt.setString(4, fechaEntrega);
                 guardarStmt.setString(5, horaEntrega);
                 guardarStmt.setString(6, colegio);
-//                guardarStmt.setString(7, horaRecibo);
+                guardarStmt.setString(7, salon);
                 guardarStmt.executeUpdate();
                 realizarPrestamoActual();
                 
@@ -1661,7 +1674,7 @@ public  void stop2(){
         else if(optExamenProfesional.isSelected())
             colegio = "Examen Profesional";
         
-        try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO PrestamoActual(Profesor_IdProfesor, Material_IdMaterial, Usuario_IdPrestador, Fecha_Entrega, Hora_Entrega, Colegio) values(?,?,?,?,?,?)",
+        try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO PrestamoActual(Profesor_IdProfesor, Material_IdMaterial, Usuario_IdPrestador, Fecha_Entrega, Hora_Entrega, Colegio, Salon) values(?,?,?,?,?,?,?)",
                         //Con la sig. linea, la clave primaria de la tabla se autogenera al hacer el INSERT
                         PreparedStatement.RETURN_GENERATED_KEYS)) 
                        {
@@ -1671,7 +1684,7 @@ public  void stop2(){
                            guardarStmt.setString(4, fechaEntrega);
                            guardarStmt.setString(5, horaEntrega);
                            guardarStmt.setString(6, colegio);
-           //                guardarStmt.setString(7, horaRecibo);
+                           guardarStmt.setString(7, salon);
                            guardarStmt.executeUpdate();
 
            //                JOptionPane.showMessageDialog(Principal.this,"Se ha registrado el préstamo con éxito. \nPresione Aceptar para continuar.");
@@ -1754,7 +1767,7 @@ public  void stop2(){
         try {
             PreparedStatement pst = (PreparedStatement) c.prepareStatement(sql);
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Se ha devuelto el equipo con éxito");
+            //JOptionPane.showMessageDialog(null, "Se ha devuelto el equipo con éxito");
 //            cargar("");
         } catch (SQLException ex) {
             Logger.getLogger(VerRegistrosProfesores.class.getName()).log(Level.SEVERE, null, ex);
@@ -2006,8 +2019,8 @@ public  void stop2(){
     private javax.swing.JButton btnPrestamo;
     private javax.swing.JButton btnRecibo;
     private javax.swing.JButton btnReset;
+    private javax.swing.JButton btnSalon;
     private javax.swing.ButtonGroup grupoColegios;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;

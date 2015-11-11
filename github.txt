@@ -12,3 +12,11 @@ git push -u origin master
 git add .
 git commit -m "comentario"
 git push origin master
+
+https://www.youtube.com/watch?v=41GD6nLeYkY
+
+https://www.youtube.com/watch?v=tvYaywrT-YE
+
+https://www.youtube.com/watch?v=4Lj36wbywp8
+
+https://www.youtube.com/watch?v=2onLlHvY8T0
