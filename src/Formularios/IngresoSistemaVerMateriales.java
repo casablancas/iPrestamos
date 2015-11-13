@@ -55,7 +55,7 @@ public class IngresoSistemaVerMateriales extends javax.swing.JFrame {
     void acceder(String usuario, String contraseña)
     {
        String cap = "";
-       String sql = "SELECT usuario, password FROM usuario WHERE usuario='"+usuario+"' && password='"+contraseña+"'";
+       String sql = "SELECT Usuario, Password FROM Usuario WHERE Usuario='"+usuario+"' && Password='"+contraseña+"'";
        
         try {
             Statement st = cn.createStatement();

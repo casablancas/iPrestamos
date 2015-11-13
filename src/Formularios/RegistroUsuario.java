@@ -108,6 +108,7 @@ public class RegistroUsuario extends javax.swing.JFrame {
         labelConectado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconImage( new ImageIcon(getClass().getResource("/logotipo/fingerprint10.png")).getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);

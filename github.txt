@@ -13,6 +13,20 @@ git add .
 git commit -m "comentario"
 git push origin master
 
+
+REGRESA A LA VERSION ANTERIOR
+git pull origin master
+
+
+DICE SI HAY CAMBIOS ENTRE GIT Y LA PC
+git checkout
+
+
+git status
+
+
+
+
 https://www.youtube.com/watch?v=41GD6nLeYkY
 
 https://www.youtube.com/watch?v=tvYaywrT-YE

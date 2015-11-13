@@ -11,9 +11,9 @@ public class ConexionBD {
 
 public  String puerto="3306";
 public  String nomservidor="localhost";
-public  String db="servicioing3";
-public  String user="root";
-public  String pass="";
+public  String db="servicioing";
+public  String user="alexander92";
+public  String pass="shark123";
 //Connection conn=null;
 
 private Connection conn;
@@ -30,10 +30,11 @@ public Connection conectar(){
     try{
     //String ruta="jdbc:mysql://";
     //String servidor=nomservidor+":"+puerto+"/";
-    String BaseDeDatos = "jdbc:mysql://localhost/servicioing3?user=root&password=";
+//    String BaseDeDatos = "jdbc:mysql://23.229.190.232/ServicioIng?connectTimeout=3000";
+    String BaseDeDatos = "jdbc:mysql://23.229.190.232/ServicioIng";
     Class.forName("com.mysql.jdbc.Driver");
-    //conn = DriverManager.getConnection(BaseDeDatos+db,user,pass);
-    setConexion(DriverManager.getConnection(BaseDeDatos));
+    conn = DriverManager.getConnection(BaseDeDatos,user,pass);
+//    setConexion(DriverManager.getConnection(BaseDeDatos));
 
     if (conn!=null){
     System.out.println("Conexión a base de datos listo...");

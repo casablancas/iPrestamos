@@ -59,7 +59,7 @@ public class IngresoSistemaRegistroProfesores extends javax.swing.JFrame {
     void acceder(String usuario, String contraseña) throws UnsupportedLookAndFeelException
     {
        String cap = "";
-       String sql = "SELECT usuario, password FROM usuario WHERE usuario='"+usuario+"' && password='"+contraseña+"'";
+       String sql = "SELECT Usuario, Password FROM Usuario WHERE Usuario='"+usuario+"' && Password='"+contraseña+"'";
        
         try {
             Statement st = cn.createStatement();
@@ -70,7 +70,7 @@ public class IngresoSistemaRegistroProfesores extends javax.swing.JFrame {
 //                JOptionPane.showMessageDialog(null, "Bienvenido.");
 //                Principal ventanaPrincipal = new Principal();
 //                ventanaPrincipal.setVisible(true);
-                new RegistroProfesor().show(true);
+                new RegistroProfesor().setVisible(true);
                 this.dispose();
             }else
             {

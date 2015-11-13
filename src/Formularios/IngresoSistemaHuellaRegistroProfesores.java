@@ -573,13 +573,17 @@ public  void stop(){
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         stop();
-        //        try {
-            //            new RegistroProfesor().show(true);
-            //        } catch (UnsupportedLookAndFeelException ex) {
-            //            Logger.getLogger(IngresoSistemaHuellaRegistroUsuarios.class.getName()).log(Level.SEVERE, null, ex);
-            //        }
-        new RegistroMaterial().setVisible(true);
-        this.dispose();
+        try {
+            //        try {
+                //            new RegistroProfesor().show(true);
+                //        } catch (UnsupportedLookAndFeelException ex) {
+                //            Logger.getLogger(IngresoSistemaHuellaRegistroUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                //        }
+            new RegistroProfesor().setVisible(true);
+            this.dispose();
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(IngresoSistemaHuellaRegistroProfesores.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

@@ -1332,7 +1332,7 @@ public  void stop2(){
              //cargar();
              //String sql = "SELECT * FROM cliente WHERE nom_cli LIKE '%" +valor+"%";
                  //String sql = "SELECT * FROM somhue WHERE huehuella = "+'"'+referenceTemplate+'"';
-                 String sql =  "SELECT * FROM profesor WHERE Nombre = '"+nombre+"' && Apellidos = +'"+apellidos+"'";
+                 String sql =  "SELECT * FROM Profesor WHERE Nombre = '"+nombre+"' && Apellidos = +'"+apellidos+"'";
 //                 btnConsulta.setEnabled(true);
 //                 btnHistorial.setEnabled(true);
                  //Creamos nuestro objeto para la tabla que muestra los datos de la BD

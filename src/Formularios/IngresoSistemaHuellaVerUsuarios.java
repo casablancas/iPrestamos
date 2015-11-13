@@ -577,7 +577,7 @@ public  void stop(){
             //        } catch (UnsupportedLookAndFeelException ex) {
             //            Logger.getLogger(IngresoSistemaHuellaRegistroUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             //        }
-        new RegistroMaterial().setVisible(true);
+        new VerRegistrosUsuarios().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
 

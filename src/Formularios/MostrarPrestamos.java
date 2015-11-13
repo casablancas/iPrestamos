@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -471,6 +472,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
         OpcionEliminar.add(Eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setIconImage( new ImageIcon(getClass().getResource("/logotipo/fingerprint10.png")).getImage());
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -512,6 +514,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
             }
         });
 
+        btnNombre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logotipo/teacher4.png"))); // NOI18N
         btnNombre.setText("Buscar por nombre");
         btnNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,6 +522,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
             }
         });
 
+        btnFecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logotipo/schedule3.png"))); // NOI18N
         btnFecha.setText("Buscar por fecha");
         btnFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -532,6 +536,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
             }
         });
 
+        btnMaterial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logotipo/pc6.png"))); // NOI18N
         btnMaterial.setText("Buscar por material");
         btnMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -545,6 +550,7 @@ public class MostrarPrestamos extends javax.swing.JFrame {
             }
         });
 
+        btnExportar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logotipo/microsoft-excel.png"))); // NOI18N
         btnExportar.setText("Exportar a Excel");
         btnExportar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -561,19 +567,19 @@ public class MostrarPrestamos extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(148, 148, 148)
+                .addGap(120, 120, 120)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBuscarNombre))
-                .addGap(216, 216, 216)
+                .addGap(194, 194, 194)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtBuscarMaterial))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtBuscarFecha)
-                    .addComponent(btnFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(157, 157, 157)
+                    .addComponent(btnFecha))
+                .addGap(101, 101, 101)
                 .addComponent(btnExportar)
                 .addContainerGap())
             .addComponent(barraProgreso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
