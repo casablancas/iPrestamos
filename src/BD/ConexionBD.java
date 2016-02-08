@@ -31,9 +31,12 @@ public Connection conectar(){
     //String ruta="jdbc:mysql://";
     //String servidor=nomservidor+":"+puerto+"/";
 //    String BaseDeDatos = "jdbc:mysql://23.229.190.232/ServicioIng?connectTimeout=3000";
-    String BaseDeDatos = "jdbc:mysql://23.229.190.232/ServicioIng";
+    
+
+    //String BaseDeDatos = "jdbc:mysql://23.229.190.232/ServicioIng";
+    String BaseDeDatos = "jdbc:mysql://localhost/servicioing?user=root&password=";
     Class.forName("com.mysql.jdbc.Driver");
-    conn = DriverManager.getConnection(BaseDeDatos,user,pass);
+    conn = DriverManager.getConnection(BaseDeDatos);
 //    setConexion(DriverManager.getConnection(BaseDeDatos));
 
     if (conn!=null){

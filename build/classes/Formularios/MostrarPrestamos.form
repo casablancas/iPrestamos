@@ -21,6 +21,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="0"/>
+    <Property name="iconImage" type="java.awt.Image" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+      <Connection code=" new ImageIcon(getClass().getResource(&quot;/logotipo/fingerprint10.png&quot;)).getImage()" type="code"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -50,12 +53,12 @@
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnNombre" max="32767" attributes="0"/>
                   <Component id="txtBuscarNombre" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="216" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btnMaterial" max="32767" attributes="0"/>
                   <Component id="txtBuscarMaterial" max="32767" attributes="0"/>
@@ -63,9 +66,9 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="txtBuscarFecha" max="32767" attributes="0"/>
-                  <Component id="btnFecha" max="32767" attributes="0"/>
+                  <Component id="btnFecha" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
               <Component id="btnExportar" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -159,6 +162,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnNombre">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/logotipo/teacher4.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Buscar por nombre"/>
       </Properties>
       <Events>
@@ -167,6 +173,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnFecha">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/logotipo/schedule3.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Buscar por fecha"/>
       </Properties>
       <Events>
@@ -180,6 +189,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnMaterial">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/logotipo/pc6.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Buscar por material"/>
       </Properties>
       <Events>
@@ -193,6 +205,9 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnExportar">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/logotipo/microsoft-excel.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Exportar a Excel"/>
       </Properties>
       <Events>

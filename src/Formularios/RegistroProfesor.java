@@ -65,9 +65,9 @@ public class RegistroProfesor extends javax.swing.JFrame {
         this.setTitle("Registro de Profesor");
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        btnGuardar.setEnabled(false);
-        txtNombre.setEnabled(false);
-        txtApellidos.setEnabled(false);
+        //btnGuardar.setEnabled(true);
+        //txtNombre.setEnabled(false);
+        //txtApellidos.setEnabled(false);
         txtArea.setEditable(false);
     }
 
@@ -101,6 +101,7 @@ public class RegistroProfesor extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         labelDesconectado = new javax.swing.JLabel();
         labelConectado = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setIconImage( new ImageIcon(getClass().getResource("/logotipo/fingerprint10.png")).getImage());
@@ -294,6 +295,13 @@ public class RegistroProfesor extends javax.swing.JFrame {
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
+        jButton1.setText("SinHuella");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -306,17 +314,17 @@ public class RegistroProfesor extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(68, 68, 68)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(16, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnGuardar)
                         .addGap(18, 18, 18)
                         .addComponent(btnCancelar)
-                        .addContainerGap())))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
@@ -342,7 +350,8 @@ public class RegistroProfesor extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnGuardar)
-                            .addComponent(btnCancelar))))
+                            .addComponent(btnCancelar)
+                            .addComponent(jButton1))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -425,6 +434,11 @@ public class RegistroProfesor extends javax.swing.JFrame {
         stop();
         this.dispose();
     }//GEN-LAST:event_formWindowClosing
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        guardarSinHuella();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 //Varible que permite iniciar el dispositivo de lector de huella conectado
@@ -671,34 +685,76 @@ public void limpiarTextFields()
 
      //Pregunta el nombre de la persona a la cual corresponde dicha huella
      //String nombre = JOptionPane.showInputDialog("Nombre:");
-     try {
-     ConexionBD con = new ConexionBD();
-     //Establece los valores para la sentencia SQL
-     Connection c = con.conectar(); //Establecemos la conexion con la BD
-            //Guardamos la huella dactilar en la BD con un id auto incremental.
-            try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO Profesor(HuellaProfesor, Nombre, Apellidos) values(?,?,?)",
-             //Con la sig. linea, la clave primaria de la tabla se autogenera al hacer el INSERT
-             PreparedStatement.RETURN_GENERATED_KEYS)) {
-                //guardarStmt.setString(1,nombre);
-                guardarStmt.setBinaryStream(1, datosHuella, tamañoHuella);
-                guardarStmt.setString(2, nombre);
-                guardarStmt.setString(3, apellidos);
-                //Ejecuta la sentencia
-                guardarStmt.execute();
-         }
-         
-     JOptionPane.showMessageDialog(RegistroProfesor.this,"Se ha guardado la huella con éxito. \nPresione Aceptar para continuar.");
-     con.desconectar();
-//     ventanaNueva.limpiarTextFields();
-     btnGuardar.setEnabled(false);
-//     btnRegistro.setEnabled(false);
-//     btnVerificar.grabFocus();
-     } catch (SQLException ex) {
-     //Si ocurre un error lo indica en la consola
-     System.err.println("Error al guardar los datos de la huella."+ex);
-     }finally{
-     con.desconectar();
-     }
+        try {
+        ConexionBD con = new ConexionBD();
+        //Establece los valores para la sentencia SQL
+        Connection c = con.conectar(); //Establecemos la conexion con la BD
+               //Guardamos la huella dactilar en la BD con un id auto incremental.
+               try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO Profesor(HuellaProfesor, Nombre, Apellidos) values(?,?,?)",
+                //Con la sig. linea, la clave primaria de la tabla se autogenera al hacer el INSERT
+                PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+                       //guardarStmt.setString(1,nombre);
+                       guardarStmt.setBinaryStream(1, datosHuella, tamañoHuella);
+                       guardarStmt.setString(2, nombre);
+                       guardarStmt.setString(3, apellidos);
+                       //Ejecuta la sentencia
+                       guardarStmt.execute();
+            }
+
+        JOptionPane.showMessageDialog(RegistroProfesor.this,"Se ha guardado la huella con éxito. \nPresione Aceptar para continuar.");
+        con.desconectar();
+   //     ventanaNueva.limpiarTextFields();
+        btnGuardar.setEnabled(false);
+   //     btnRegistro.setEnabled(false);
+   //     btnVerificar.grabFocus();
+        } catch (SQLException ex) {
+        //Si ocurre un error lo indica en la consola
+        System.err.println("Error al guardar los datos de la huella."+ex);
+        }finally{
+        con.desconectar();
+        }
+   }
+    
+   public void guardarSinHuella()
+   {
+       //Obtiene los datos del template de la huella actual
+     //ByteArrayInputStream datosHuella = new ByteArrayInputStream(template.serialize());
+     //Integer tamañoHuella = template.serialize().length;
+     nombre = txtNombre.getText().toString();
+     apellidos = txtApellidos.getText().toString();
+
+     //Pregunta el nombre de la persona a la cual corresponde dicha huella
+     //String nombre = JOptionPane.showInputDialog("Nombre:");
+        try {
+        ConexionBD con = new ConexionBD();
+        //Establece los valores para la sentencia SQL
+        Connection c = con.conectar(); //Establecemos la conexion con la BD
+               //Guardamos la huella dactilar en la BD con un id auto incremental.
+               try (PreparedStatement guardarStmt = c.prepareStatement("INSERT INTO Profesor(Nombre, Apellidos) values(?,?)",
+                //Con la sig. linea, la clave primaria de la tabla se autogenera al hacer el INSERT
+                PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+                       //guardarStmt.setString(1,nombre);
+                       //guardarStmt.setBinaryStream(1, datosHuella, tamañoHuella);
+                       guardarStmt.setString(1, nombre);
+                       guardarStmt.setString(2, apellidos);
+                       //Ejecuta la sentencia
+                       guardarStmt.execute();
+            }
+
+        JOptionPane.showMessageDialog(RegistroProfesor.this,"Se ha guardado la huella con éxito. \nPresione Aceptar para continuar.");
+        con.desconectar();
+   //     ventanaNueva.limpiarTextFields();
+        btnGuardar.setEnabled(false);
+   //     btnRegistro.setEnabled(false);
+   //     btnVerificar.grabFocus();
+        } catch (SQLException ex) {
+        //Si ocurre un error lo indica en la consola
+        System.err.println("Error al guardar los datos de la huella."+ex);
+        }finally{
+        con.desconectar();
+        }
    }
     
 
@@ -955,6 +1011,7 @@ public void limpiarTextFields()
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
