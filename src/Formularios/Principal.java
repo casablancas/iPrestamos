@@ -889,6 +889,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         String apellidos = JOptionPane.showInputDialog("Introduzca apellidos del profesor","Apellidos a buscar en la base de datos: ");
         identificarProfesor(apellidos);
+        
     }//GEN-LAST:event_btnIdentificarProfesorActionPerformed
 
     private void btnIdentificarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIdentificarUsuarioActionPerformed
